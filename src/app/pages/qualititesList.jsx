@@ -1,8 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import QualitiesTable from "../components/ui/qualitiesTable";
+import axios from "axios";
 
 const QualitiesListPage = () => {
+    useEffect(() => {
+        const promise = axios.get("http://localhost:4000/api/v1/quality")
+        console.log(promise);
+    }, [])
     const history = useHistory();
     const handleEdit = (param) => {
         console.log(param);
