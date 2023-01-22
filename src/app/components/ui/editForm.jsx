@@ -3,12 +3,13 @@ import SelectField from "../common/form/selectField";
 import TextField from "../common/form/textField";
 import colors from "../../constants/colors.json";
 
-const EditForm = ({data}) => {
+const EditForm = ({data, onSubmit}) => {
     console.log(data);
-    const [form, setForm] = useState({});
+    const [form, setForm] = useState(data || {});
     const handeleSubmit = (e) => {
         e.preventDefault();
         console.log(form);
+        onSubmit(form);
     };
     const handleChange = (target) => {
         console.log(target);
