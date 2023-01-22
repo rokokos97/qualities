@@ -7,21 +7,21 @@ const EditQualityPage = () => {
     const [quality, setQuality] = useState(null);
     const id = useParams().id
     const qualityEndPoint = `http://localhost:4000/api/v1/quality/${id}`
-    axios.interceptors.response.use((res) => res, function (error){
+    axios.interceptors.response.use((res) =>
+        res, function (error){
+        console.log("Interceptors")
         const expectedError = error.response.status && error.response.status>=400 && error.response.status<500;
         if(!expectedError){ console.log("UnexpectedError")}
-
+return Promise.reject(error);
     })
     const handleSubmit = async (data) => {
       try {
-          axios
-              .put(qualityEndPoint, data)
-              .then((result)=> console.log(result.data.content));
+          await axios
+              .put(qualityEndPoint+"fscsc", data)
+              .then((result)=> console.log("result.data.content", result.data.content));
       } catch (error) {
-          const expectedError = error.response.status && error.response.status>=400 && error.response.status<500;
-          if(!expectedError){ console.log("UnexpectedError")}else{
-              console.log("ExpectedError");
-          }
+            console.log("Error")
+            console.log("ExpectedError");
       }
 
     }
