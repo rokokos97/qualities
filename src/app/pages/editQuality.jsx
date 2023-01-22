@@ -8,7 +8,9 @@ const EditQualityPage = () => {
     const id = useParams().id
     const qualityEndPoint = `http://localhost:4000/api/v1/quality/${id}`
     const handleSubmit = (data) => {
-      axios.post(qualityEndPoint, data)
+      axios
+          .post(qualityEndPoint, data)
+          .then((result)=> console.log(result.data.content));
     }
     useEffect(async () => {
         const { data } = await axios.get(qualityEndPoint)
@@ -16,7 +18,8 @@ const EditQualityPage = () => {
     },[]);
     return (
         <>
-            <h1>Edit Quality Page</h1> <EditForm data={quality} onSubmit={handleSubmit}/>
+             <h1>Edit Quality Page</h1>
+            {quality!==null?<EditForm data={quality} onSubmit={handleSubmit}/>:"Loading"}
         </>
     );
 };
