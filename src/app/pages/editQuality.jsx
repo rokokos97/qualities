@@ -9,7 +9,7 @@ const EditQualityPage = () => {
     const qualityEndPoint = `http://localhost:4000/api/v1/quality/${id}`
     const handleSubmit = (data) => {
       axios
-          .post(qualityEndPoint, data)
+          .put(qualityEndPoint, data)
           .then((result)=> console.log(result.data.content));
     }
     useEffect(async () => {
