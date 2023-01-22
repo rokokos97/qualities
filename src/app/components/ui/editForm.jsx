@@ -3,7 +3,8 @@ import SelectField from "../common/form/selectField";
 import TextField from "../common/form/textField";
 import colors from "../../constants/colors.json";
 
-const EditForm = () => {
+const EditForm = ({data}) => {
+    console.log(data);
     const [form, setForm] = useState({});
     const handeleSubmit = (e) => {
         e.preventDefault();
