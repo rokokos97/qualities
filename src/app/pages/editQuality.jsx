@@ -7,6 +7,11 @@ const EditQualityPage = () => {
     const [quality, setQuality] = useState(null);
     const id = useParams().id
     const qualityEndPoint = `http://localhost:4000/api/v1/quality/${id}`
+    axios.interceptors.response.use((res) => res, function (error){
+        const expectedError = error.response.status && error.response.status>=400 && error.response.status<500;
+        if(!expectedError){ console.log("UnexpectedError")}
+
+    })
     const handleSubmit = async (data) => {
       try {
           axios
@@ -14,9 +19,11 @@ const EditQualityPage = () => {
               .then((result)=> console.log(result.data.content));
       } catch (error) {
           const expectedError = error.response.status && error.response.status>=400 && error.response.status<500;
-          if(!expectedError){ console.log("UnexpectedError")}
+          if(!expectedError){ console.log("UnexpectedError")}else{
+              console.log("ExpectedError");
+          }
       }
-        console.log("ExpectedError");
+
     }
     useEffect(async () => {
         const { data } = await axios.get(qualityEndPoint)
