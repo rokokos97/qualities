@@ -1,32 +1,23 @@
 import React, { useEffect, useState } from "react";
 import EditForm from "../components/ui/editForm";
-import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import httpService from "../services/httpService";
 const EditQualityPage = () => {
     const [quality, setQuality] = useState(null);
     const id = useParams().id
     const qualityEndPoint = `http://localhost:4000/api/v1/quality/${id}`
-    axios.interceptors.response.use((res) =>
-        res, function (error){
-        console.log("Interceptors")
-        const expectedError = error.response.status && error.response.status>=400 && error.response.status<500;
-        if(!expectedError){ console.log("UnexpectedError")}
-return Promise.reject(error);
-    })
+
     const handleSubmit = async (data) => {
       try {
-          await axios
-              .put(qualityEndPoint+"fscsc", data)
-              .then((result)=> console.log("result.data.content", result.data.content));
+          await httpService
+              .put(qualityEndPoint, data)
+              .then((res)=> console.log(res.data.content));
       } catch (error) {
-            console.log("Error")
             console.log("ExpectedError");
       }
-
     }
     useEffect(async () => {
-        const { data } = await axios.get(qualityEndPoint)
+        const { data } = await httpService.get(qualityEndPoint)
         setQuality(data.content)
     },[]);
     return (

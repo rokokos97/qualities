@@ -8,7 +8,6 @@ const EditForm = ({data, onSubmit}) => {
     const [form, setForm] = useState(data || {});
     const handeleSubmit = (e) => {
         e.preventDefault();
-        console.log(form);
         onSubmit(form);
     };
     const handleChange = (target) => {
