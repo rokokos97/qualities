@@ -7,10 +7,16 @@ const EditQualityPage = () => {
     const [quality, setQuality] = useState(null);
     const id = useParams().id
     const qualityEndPoint = `http://localhost:4000/api/v1/quality/${id}`
-    const handleSubmit = (data) => {
-      axios
-          .put(qualityEndPoint, data)
-          .then((result)=> console.log(result.data.content));
+    const handleSubmit = async (data) => {
+      try {
+          axios
+              .put(qualityEndPoint, data)
+              .then((result)=> console.log(result.data.content));
+      } catch (error) {
+          const expectedError = error.response.status && error.response.status>=400 && error.response.status<500;
+          if(!expectedError){ console.log("UnexpectedError")}
+      }
+        console.log("ExpectedError");
     }
     useEffect(async () => {
         const { data } = await axios.get(qualityEndPoint)
