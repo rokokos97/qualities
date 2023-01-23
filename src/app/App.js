@@ -19,7 +19,6 @@ function App() {
                     <Redirect to='/' />
                 </Switch>
             </Container>
-            <button onClick={() => methodDoesNotExist()}>Break the world</button>;
         </div>
     );
 }
