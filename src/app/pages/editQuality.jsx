@@ -13,7 +13,7 @@ const EditQualityPage = () => {
               .put(qualityEndPoint, data)
               .then((res)=> console.log(res.data.content));
       } catch (error) {
-            console.log("ExpectedError");
+            console.log("ExpectedError", error.response.status);
       }
     }
     useEffect(async () => {
