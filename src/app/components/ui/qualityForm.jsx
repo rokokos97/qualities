@@ -3,7 +3,7 @@ import SelectField from "../common/form/selectField";
 import TextField from "../common/form/textField";
 import colors from "../../constants/colors.json";
 import useForm from "../../hooks/useForm";
-const EditForm = ({data, onSubmit}) => {
+const QualityForm = ({data, onSubmit}) => {
     const {form,handleChange,handleSubmit} = useForm(data, onSubmit);
     return (
         <form onSubmit={handleSubmit}>
@@ -25,4 +25,4 @@ const EditForm = ({data, onSubmit}) => {
     );
 };
 
-export default EditForm;
+export default QualityForm;

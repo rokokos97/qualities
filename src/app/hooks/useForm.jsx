@@ -5,7 +5,7 @@ const useForm = (initialState = {},onSubmit) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(form);
-        onSubmit(form);
+        onSubmit?.(form);
     };
     const handleChange = (target) => {
         console.log(target);

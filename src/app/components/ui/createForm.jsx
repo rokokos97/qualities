@@ -3,7 +3,6 @@ import SelectField from "../common/form/selectField";
 import TextField from "../common/form/textField";
 import colors from "../../constants/colors.json";
 import useForm from "../../hooks/useForm";
-
 const CreateForm = ({onSubmit}) => {
     const {form,handleChange,handleSubmit} = useForm({}, onSubmit)
     return (
