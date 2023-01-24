@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import SelectField from "../common/form/selectField";
 import TextField from "../common/form/textField";
 import colors from "../../constants/colors.json";
-
-const EditForm = ({data, onSubmit}) => {
-    console.log(data);
+const useForm = (data,onSubmit) => {
     const [form, setForm] = useState(data || {});
-    const handeleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(form);
         onSubmit(form);
     };
     const handleChange = (target) => {
@@ -17,8 +16,13 @@ const EditForm = ({data, onSubmit}) => {
             [target.name]: target.value,
         }));
     };
+    return {form,handleChange,handleSubmit}
+}
+
+const EditForm = ({data, onSubmit}) => {
+    const {form,handleChange,handleSubmit} = useForm(data, onSubmit)
     return (
-        <form onSubmit={handeleSubmit}>
+        <form onSubmit={handleSubmit}>
             <TextField
                 label='Наименование'
                 name='name'
