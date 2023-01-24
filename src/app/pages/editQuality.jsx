@@ -7,15 +7,13 @@ import {toast} from "react-toastify";
 const EditQualityPage = () => {
     const [quality, setQuality] = useState(null);
     const id = useParams().id
-    const [, setErrors] = useState(null);
     const updateQuality = async (content) => {
         try {
             const data = await qualityService.update(id,content);
             return data.content
         } catch (error){
-            const { message, code } = error.response.data
+            const { message } = error.response.data
             toast.error(message)
-            setErrors({ message, code })
         }
     };
     const getQuality = async (id) => {
@@ -24,7 +22,8 @@ const EditQualityPage = () => {
             console.log(data);
             return data.content;
         } catch (error) {
-            console.log("ExpectedError");
+            const { message } = error.response.data
+            toast.error(message);
         }
     }
     const handleSubmit = (data) => {
