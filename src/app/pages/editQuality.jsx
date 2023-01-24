@@ -2,23 +2,33 @@ import React, { useEffect, useState } from "react";
 import EditForm from "../components/ui/editForm";
 import { useParams } from "react-router-dom";
 import httpService from "../services/httpService";
+import config from "../config.json"
 const EditQualityPage = () => {
     const [quality, setQuality] = useState(null);
     const id = useParams().id
-    const qualityEndPoint = `http://localhost:4000/api/v1/quality/${id}`
+    const qualityEndPoint = config.apiEndPoint + `quality/${id}`
 
-    const handleSubmit = async (data) => {
-      try {
-          await httpService
-              .put(qualityEndPoint, data)
-              .then((res)=> console.log(res.data.content));
-      } catch (error) {
-            console.log("ExpectedError", error.response.status);
-      }
+
+    const updateQuality = async (content) => {
+        try {
+            const { data } = await httpService.put(qualityEndPoint, content);
+            return data;
+        } catch (error) {
+            console.log("ExpectedError");
+        }
+    };
+    const getQuality = async (id) => {
+        try {
+            const { data } = await httpService.get(qualityEndPoint, id);
+            return data;
+        } catch (error) {
+            console.log("ExpectedError");
+        }
     }
-    useEffect(async () => {
-        const { data } = await httpService.get(qualityEndPoint)
-        setQuality(data.content)
+
+    const handleSubmit = (data) => { updateQuality(data) }
+    useEffect(() => {
+        getQuality(id).then(data=>setQuality(data.content))
     },[]);
     return (
         <>
