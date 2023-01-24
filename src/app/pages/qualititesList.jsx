@@ -2,11 +2,12 @@ import React, { useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import QualitiesTable from "../components/ui/qualitiesTable";
 import axios from "axios";
+import apiEndpoint from "../config.json"
 
 const QualitiesListPage = () => {
     const [qualities, setQualities] = useState([]);
     useEffect(async () => {
-        const { data } = await axios.get("http://localhost:4000/api/v1/quality")
+        const { data } = await axios.get(apiEndpoint + "quality")
         setQualities(data.content)
     }, [])
     const history = useHistory();
