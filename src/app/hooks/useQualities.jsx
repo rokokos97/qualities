@@ -9,7 +9,7 @@ export const  useQualities = () => {
 export const QualitiesProvider = ({children}) => {
     const [qualities, setQualities] = useState([]);
     const [, setError] = useState(null);
-    const [, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(()=>{
         const getQualities = async () => {
             try {
@@ -24,7 +24,14 @@ export const QualitiesProvider = ({children}) => {
         }
         getQualities();
     }, []);
-    return <QualitiesContext.Provider value={{qualities}}>
-        {children}
+    const getQuality = (id) => {
+        return qualities.find((q)=>q._id===id);
+    }
+    return <QualitiesContext.Provider value={{qualities, getQuality}}>
+        {!isLoading
+            ? children
+            : <h1>Qualities Loading...</h1>
+        }
+
     </QualitiesContext.Provider>
 }
