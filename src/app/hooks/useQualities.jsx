@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import qualityService from "../services/quality.Service";
+import qualityService from "../services/qualityService";
 import {toast} from "react-toastify";
 
 const QualitiesContext = React.createContext();
