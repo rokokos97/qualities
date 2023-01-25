@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Container from "./components/common/container";
 import NavBar from "./components/ui/NavBar";
@@ -12,7 +12,11 @@ const getRoutes = (routes) => {
     });
 };
 
-export const QualitiesContext = React.createContext();
+const QualitiesContext = React.createContext();
+export const  useQualities = () => {
+    return useContext(QualitiesContext);
+};
+
 const qualities = [{_id:1224342, name:"kind"}]
 
 function App() {
