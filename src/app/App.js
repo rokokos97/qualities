@@ -14,7 +14,7 @@ const getRoutes = (routes) => {
 };
 const QualitiesLoading = ({children}) => {
     const {isLoading} = useQualities();
-    if (!isLoading){return {children}}
+    if (!isLoading){return children}
     return <h1>Qualities Loading...</h1>
 }
 
