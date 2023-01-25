@@ -12,7 +12,7 @@ const getRoutes = (routes) => {
     });
 };
 
-const QualitiesContext = React.createContext();
+export const QualitiesContext = React.createContext();
 
 
 function App() {

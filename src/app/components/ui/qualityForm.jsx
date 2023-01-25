@@ -1,9 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import SelectField from "../common/form/selectField";
 import TextField from "../common/form/textField";
 import colors from "../../constants/colors.json";
 import useForm from "../../hooks/useForm";
-const QualityForm = ({data, onSubmit}) => {
+import {QualitiesContext} from "../../App";
+
+
+const QualityForm = ({data,onSubmit}) => {
+
+    const dataContext = useContext(QualitiesContext);
+    console.log(dataContext);
     const {form,handleChange,handleSubmit} = useForm(data, onSubmit);
     return (
         <form onSubmit={handleSubmit}>
