@@ -13,13 +13,13 @@ const getRoutes = (routes) => {
 };
 
 export const QualitiesContext = React.createContext();
-
+const qualities = [{_id:1224342, name:"kind"}]
 
 function App() {
     return (
         <div className='App'>
             <NavBar routes={routes} />
-            <QualitiesContext.Provider value={"Simple text"}>
+            <QualitiesContext.Provider value={qualities}>
             <Container>
                 <Switch>
                     {getRoutes(routes)}
