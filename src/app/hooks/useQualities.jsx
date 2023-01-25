@@ -8,7 +8,7 @@ export const  useQualities = () => {
 };
 export const QualitiesProvider = ({children}) => {
     const [qualities, setQualities] = useState([]);
-    const [error, setError] = useState(null);
+    const [, setError] = useState(null);
     useEffect(()=>{
         const getQualities = async () => {
             try {
