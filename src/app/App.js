@@ -12,16 +12,21 @@ const getRoutes = (routes) => {
     });
 };
 
+const QualitiesContext = React.createContext();
+
+
 function App() {
     return (
         <div className='App'>
             <NavBar routes={routes} />
+            <QualitiesContext.Provider value={"Simple text"}>
             <Container>
                 <Switch>
                     {getRoutes(routes)}
                     <Redirect to='/' />
                 </Switch>
             </Container>
+            </QualitiesContext.Provider>
             <ToastContainer/>
         </div>
     );
