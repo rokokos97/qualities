@@ -8,7 +8,7 @@ export const  useQualities = () => {
 };
 export const QualitiesProvider = ({children}) => {
     const [qualities, setQualities] = useState([]);
-    const [, setError] = useState(null);
+    const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(()=>{
         const getQualities = async () => {
@@ -66,6 +66,12 @@ export const QualitiesProvider = ({children}) => {
             catchError(error)
         }
         }
+    useEffect(()=>{
+        if(error!==null){
+            toast.error(error);
+            setError(null);
+        }
+    },[error])
     return <QualitiesContext.Provider value={{qualities, getQuality, updateQuality, addQuality, deleteQuality}}>
         {!isLoading
             ? children
