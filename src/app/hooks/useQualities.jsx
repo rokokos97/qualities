@@ -27,7 +27,22 @@ export const QualitiesProvider = ({children}) => {
     const getQuality = (id) => {
         return qualities.find((q)=>q._id===id);
     }
-    return <QualitiesContext.Provider value={{qualities, getQuality}}>
+    const updateQuality = async ({_id: id,...data}) => {
+        try {
+            const {content} = await qualityService.update(id,data);
+            setQualities(prevState => prevState.map((item)=>{
+                if(item._id === content._id){
+                    return content
+                }
+                return item;
+            }))
+            return content
+        } catch (error){
+            const { message } = error.response.data
+            setError(message);
+        }
+        }
+    return <QualitiesContext.Provider value={{qualities, getQuality, updateQuality}}>
         {!isLoading
             ? children
             : <h1>Qualities Loading...</h1>
