@@ -18,12 +18,16 @@ export const QualitiesProvider = ({children}) => {
                 setIsLoading(false);
             } catch (error){
                 const { message } = error.response.data
-                toast.error(message);
+                toast.error(message)
                 setError(message)
             }
         }
         getQualities();
     }, []);
+    const catchError = (error) => {
+        const { message } = error.response.data
+        setError(message);
+    }
     const getQuality = (id) => {
         return qualities.find((q)=>q._id===id);
     }
@@ -33,8 +37,7 @@ export const QualitiesProvider = ({children}) => {
             setQualities(prevState => [...prevState,content]);
             return content
         } catch (error){
-            const { message } = error.response.data
-            setError(message);
+            catchError(error)
         }
 
     }
@@ -46,8 +49,7 @@ export const QualitiesProvider = ({children}) => {
             })
             return content
         } catch (error){
-            const { message } = error.response.data
-            setError(message);
+            catchError(error)
         }
     }
     const updateQuality = async ({_id: id,...data}) => {
@@ -61,8 +63,7 @@ export const QualitiesProvider = ({children}) => {
             }))
             return content
         } catch (error){
-            const { message } = error.response.data
-            setError(message);
+            catchError(error)
         }
         }
     return <QualitiesContext.Provider value={{qualities, getQuality, updateQuality, addQuality, deleteQuality}}>
@@ -70,6 +71,5 @@ export const QualitiesProvider = ({children}) => {
             ? children
             : <h1>Qualities Loading...</h1>
         }
-
     </QualitiesContext.Provider>
 }
