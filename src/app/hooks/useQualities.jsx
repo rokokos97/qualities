@@ -1,12 +1,22 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
+import qualityService from "../services/quality.Service";
 
 const QualitiesContext = React.createContext();
 export const  useQualities = () => {
     return useContext(QualitiesContext);
 };
-
-const qualities = [{_id:1224342, name:"kind"}]
 export const QualitiesProvider = ({children}) => {
+    const [qualities, setQualities] = useState();
+    useEffect(()=>{
+        const getQualities = async () => {
+            try {
+                const qualities = await qualityService.fetchAll()
+                setQualities(qualities)
+            } catch (error){
+
+            }
+        }
+    })
     return <QualitiesContext.Provider value={qualities}>
         {children}
     </QualitiesContext.Provider>
