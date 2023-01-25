@@ -3,12 +3,13 @@ import SelectField from "../common/form/selectField";
 import TextField from "../common/form/textField";
 import colors from "../../constants/colors.json";
 import useForm from "../../hooks/useForm";
-import { useQualities} from "../../App";
+import {useQualities} from "../../hooks/useQualities";
+
 
 
 const QualityForm = ({data,onSubmit}) => {
 
-    const dataContext = useQualities();
+    const dataContext = useQualities()
     console.log(dataContext);
     const {form,handleChange,handleSubmit} = useForm(data, onSubmit);
     return (

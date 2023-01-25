@@ -1,10 +1,11 @@
-import React, {useContext} from "react";
+import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Container from "./components/common/container";
 import NavBar from "./components/ui/NavBar";
 import routes from "./routes";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {QualitiesProvider} from "./hooks/useQualities";
 
 const getRoutes = (routes) => {
     return routes.map((prop, key) => {
@@ -12,17 +13,6 @@ const getRoutes = (routes) => {
     });
 };
 
-const QualitiesContext = React.createContext();
-export const  useQualities = () => {
-    return useContext(QualitiesContext);
-};
-
-const qualities = [{_id:1224342, name:"kind"}]
-const QualitiesProvider = ({children}) => {
-    return <QualitiesContext.Provider value={qualities}>
-        {children}
-    </QualitiesContext.Provider>
-}
 function App() {
     return (
         <div className='App'>
