@@ -9,12 +9,13 @@ export const  useQualities = () => {
 export const QualitiesProvider = ({children}) => {
     const [qualities, setQualities] = useState([]);
     const [, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [, setIsLoading] = useState(true);
     useEffect(()=>{
         const getQualities = async () => {
             try {
                 const qualities = await qualityService.fetchAll()
-                setQualities(qualities.content)
+                setQualities(qualities.content);
+                setIsLoading(false);
             } catch (error){
                 const { message } = error.response.data
                 toast.error(message);
