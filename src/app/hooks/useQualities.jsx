@@ -41,7 +41,7 @@ export const QualitiesProvider = ({children}) => {
 
     }
     const deleteQuality = async (id) => {
-        prevState.current= qualities
+        prevState.current = qualities;
         setQualities(prevState => {
             return prevState.filter((item)=>item._id !== id)
         })
