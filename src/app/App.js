@@ -18,19 +18,23 @@ export const  useQualities = () => {
 };
 
 const qualities = [{_id:1224342, name:"kind"}]
-
+const QualitiesProvider = ({children}) => {
+    <QualitiesContext.Provider value={qualities}>
+        {children}
+    </QualitiesContext.Provider>
+}
 function App() {
     return (
         <div className='App'>
             <NavBar routes={routes} />
-            <QualitiesContext.Provider value={qualities}>
+            <QualitiesProvider>
             <Container>
                 <Switch>
                     {getRoutes(routes)}
                     <Redirect to='/' />
                 </Switch>
             </Container>
-            </QualitiesContext.Provider>
+            </QualitiesProvider>
             <ToastContainer/>
         </div>
     );
