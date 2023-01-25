@@ -13,7 +13,7 @@ export const QualitiesProvider = ({children}) => {
         const getQualities = async () => {
             try {
                 const qualities = await qualityService.fetchAll()
-                setQualities(qualities)
+                setQualities(qualities.content)
             } catch (error){
                 const { message } = error.response.data
                 toast.error(message);
@@ -22,7 +22,7 @@ export const QualitiesProvider = ({children}) => {
         }
         getQualities();
     }, []);
-    return <QualitiesContext.Provider value={qualities}>
+    return <QualitiesContext.Provider value={{qualities}}>
         {children}
     </QualitiesContext.Provider>
 }
